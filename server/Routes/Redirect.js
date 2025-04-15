@@ -12,9 +12,19 @@ router.get("/:params", async (req, res) => {
 
   if (l) {
     console.log("Redirect to :", l.longUrl);
-    res.redirect(l.longUrl)
+
+    const currDate = new Date().getTime();    
+    const expiry = new Date(l.dateExpiry).getTime();
+    console.log(expiry,currDate);
+    
+
+    if (currDate < expiry) {
+      res.redirect(l.longUrl);
+    } else {
+      res.send("Url has been expired.! Bad Luck.");
+    }
   } else {
-    res.send("Not Found");
+    res.send("Page not Found");
   }
 });
 
