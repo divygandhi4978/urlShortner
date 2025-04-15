@@ -42,8 +42,6 @@ export default function Home() {
         }),
       });
       const data = await res.json();
-      console.log(data);
-
       if (!data.shortUrl) {
         setErr("Alias already registered. Try again wih changed one.");
         showResult(0);
@@ -66,8 +64,6 @@ export default function Home() {
         }),
       });
       const data = await res.json();
-      console.log(data);
-
       setShortUrl(`${import.meta.env.VITE_Fetch}/${data.shortUrl}`);
       setQrImage(data.qr);
       showResult(1);
@@ -77,7 +73,7 @@ export default function Home() {
   return (
     <div className=" max-w-6xl w-full h-full flex justify-center">
       <div className="sm:w-3/4 max-sm:mx-3 my-10 bg-[#16181d] rounded-lg text-shadow-white">
-        <h1 className="text-center text-4xl max-sm:text-3xl font-semibold mt-4 text-teal-50">
+        <h1 className="text-center text-4xl max-sm:text-3xl font-semibold mt-8 text-teal-50 max-sm:px-3">
           Shorten Longer urls
         </h1>
         <div className="mt-10 px-5">

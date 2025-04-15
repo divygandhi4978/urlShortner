@@ -15,9 +15,6 @@ router.get("/:params", async (req, res) => {
 
     const currDate = new Date().getTime();    
     const expiry = new Date(l.dateExpiry).getTime();
-    console.log(expiry,currDate);
-    
-
     if (currDate < expiry) {
       res.redirect(l.longUrl);
     } else {
