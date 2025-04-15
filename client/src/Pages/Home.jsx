@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div className=" max-w-6xl w-full h-full flex justify-center">
       <div className="sm:w-3/4 max-sm:mx-3 my-10 bg-[#16181d] rounded-lg text-shadow-white">
-        <h1 className="text-center text-4xl max-sm:text-3xl font-semibold mt-8 text-teal-50 max-sm:px-3">
+        <h1 className="text-center text-4xl max-sm:text-3xl font-bold mt-8 text-teal-50 max-sm:px-3">
           Shorten Longer urls
         </h1>
         <div className="mt-10 px-5">
