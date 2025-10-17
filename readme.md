@@ -1,11 +1,11 @@
 ## Overview 
-![](https://github.com/divygandhi4978/urlShortner/tree/master/images/1.png)
+![Overview](https://raw.githubusercontent.com/divygandhi4978/urlShortner/master/images/1.png)
 
 ## Create shortcode
-![](https://github.com/divygandhi4978/urlShortner/tree/master/images/2.png)
+![Create Shortcode](https://raw.githubusercontent.com/divygandhi4978/urlShortner/master/images/2.png)
 
 ## Use custom shortcode
-![](https://github.com/divygandhi4978/urlShortner/tree/master/images/3.png)
+![Use Custom Shortcode](https://raw.githubusercontent.com/divygandhi4978/urlShortner/master/images/3.png)
 
 ## Access shortcode to longurl
-![](https://github.com/divygandhi4978/urlShortner/tree/master/images/4.png)
+![Access Shortcode](https://raw.githubusercontent.com/divygandhi4978/urlShortner/master/images/4.png)
