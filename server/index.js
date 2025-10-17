@@ -9,10 +9,12 @@ const HOST = process.env.HOST || `http://localhost:${PORT}`;
 app.use(express.json());
 app.use(cors());
 
-// ------------------ In-memory database ------------------
-const db = new Map(); // shortUrl -> { longUrl, dateExpiry, registerDate }
+setInterval(() => {
+  fetch("https://urlshortner-cn7p.onrender.com/");
+}, 5 * 60 * 1000);
 
-// ------------------ Manual hash + Base62 ------------------
+const db = new Map(); 
+
 function hash_url(longUrl) {
   let hash = 0;
   const prime = 31;
@@ -33,7 +35,6 @@ function base62(hashKey) {
   return str || "0";
 }
 
-// ------------------ Generate short code ------------------
 function shortenUrl(longUrl, aliasData = "") {
   if (aliasData) return aliasData; // custom alias
 
@@ -52,9 +53,6 @@ function shortenUrl(longUrl, aliasData = "") {
   return shortCode;
 }
 
-// ------------------ Routes ------------------
-
-// Auto-generate short URL
 app.post("/create", async (req, res) => {
   try {
     const { longUrl, dateExpiry } = req.body;
@@ -73,11 +71,11 @@ app.post("/create", async (req, res) => {
   }
 });
 
-// Create short URL with custom alias
 app.post("/create/shorturl", async (req, res) => {
   try {
     const { longUrl, shortUrl: aliasData, dateExpiry } = req.body;
-    if (!longUrl || !aliasData) return res.status(400).json({ error: "longUrl and shortUrl required" });
+    if (!longUrl || !aliasData)
+      return res.status(400).json({ error: "longUrl and shortUrl required" });
 
     if (db.has(aliasData)) {
       return res.status(400).json({ error: "Alias already registered." });
@@ -93,7 +91,6 @@ app.post("/create/shorturl", async (req, res) => {
   }
 });
 
-// Redirect short URL
 app.get("/:shortUrl", (req, res) => {
   const { shortUrl } = req.params;
   if (!db.has(shortUrl)) return res.status(404).send("Page not found");
@@ -110,7 +107,6 @@ app.get("/:shortUrl", (req, res) => {
   }
 });
 
-// List all stored URLs
 app.get("/list", (req, res) => {
   const allData = [];
   db.forEach((value, key) => {
@@ -124,18 +120,8 @@ app.get("/list", (req, res) => {
   res.json(allData);
 });
 
-// Optional: minimal HTML form for manual testing
 app.get("/", (req, res) => {
-  res.send(`
-    <h2>Manual Hash URL Shortener API</h2>
-    <p>Use Postman or curl to test endpoints:</p>
-    <ul>
-      <li>POST /create → auto-generate short URL</li>
-      <li>POST /create/shorturl → custom alias</li>
-      <li>GET /:shortUrl → redirect</li>
-      <li>GET /list → view all URLs</li>
-    </ul>
-  `);
+  res.send(`Working`);
 });
 
 app.listen(PORT, () => console.log(`Server running at ${HOST}`));
