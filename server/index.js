@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || "https://urlshortner-cn7p.onrender.com/" || `http://localhost:${PORT}`;
+const HOST = process.env.HOST || "https://urlshortner-cn7p.onrender.com" || `http://localhost:${PORT}`;
 
 app.use(express.json());
 app.use(cors());
